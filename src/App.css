@@ -1,3 +1,4 @@
+```css
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +31,9 @@
   --transition-slow: 0.5s ease;
 
   /* Base styles */
-  --section-padding: 5rem 0;
+  --section-padding-y: 5rem;
+  --section-padding-x: 0;
+  --section-padding: var(--section-padding-y) var(--section-padding-x);
   --section-gap: 2rem;
   --container-padding: 1rem;
 }
@@ -224,7 +227,8 @@ p {
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
   :root {
-    --section-padding: 4rem 0;
+    --section-padding-y: 4rem;
+    --section-padding: var(--section-padding-y) var(--section-padding-x);
   }
   
   .container {
@@ -234,7 +238,8 @@ p {
 
 @media screen and (max-width: 992px) {
   :root {
-    --section-padding: 3.5rem 0;
+    --section-padding-y: 3.5rem;
+    --section-padding: var(--section-padding-y) var(--section-padding-x);
     --section-gap: 1.5rem;
   }
   
@@ -245,7 +250,8 @@ p {
 
 @media screen and (max-width: 768px) {
   :root {
-    --section-padding: 3rem 0;
+    --section-padding-y: 3rem;
+    --section-padding: var(--section-padding-y) var(--section-padding-x);
     --section-gap: 1rem;
     --container-padding: 1.5rem;
   }
@@ -261,7 +267,8 @@ p {
 
 @media screen and (max-width: 576px) {
   :root {
-    --section-padding: 2.5rem 0;
+    --section-padding-y: 2.5rem;
+    --section-padding: var(--section-padding-y) var(--section-padding-x);
     --container-padding: 1rem;
   }
   
@@ -272,7 +279,7 @@ p {
 
 /* Section specific adjustments */
 #hero {
-  padding-top: calc(var(--section-padding) + 80px); /* Account for fixed navbar */
+  padding-top: calc(var(--section-padding-y) + 80px); /* Fix: Use only the Y component */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -304,7 +311,7 @@ html {
 @media screen and (max-width: 768px) {
   #hero {
     min-height: calc(100vh - 60px);
-    padding-top: calc(var(--section-padding) + 60px);
+    padding-top: calc(var(--section-padding-y) + 60px); /* Fix: Use only the Y component */
   }
 }
 
