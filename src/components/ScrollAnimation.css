@@ -1,0 +1,194 @@
+/* Base animation styles */
+.scroll-animation {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--animation-delay, 0s);
+  will-change: transform, opacity;
+}
+
+.scroll-animation.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Fade Up Animation */
+.scroll-animation.fade-up {
+  transform: translateY(30px);
+}
+
+.scroll-animation.fade-up.animate {
+  transform: translateY(0);
+}
+
+/* Fade Down Animation */
+.scroll-animation.fade-down {
+  transform: translateY(-30px);
+}
+
+.scroll-animation.fade-down.animate {
+  transform: translateY(0);
+}
+
+/* Fade Left Animation */
+.scroll-animation.fade-left {
+  transform: translateX(30px);
+}
+
+.scroll-animation.fade-left.animate {
+  transform: translateX(0);
+}
+
+/* Fade Right Animation */
+.scroll-animation.fade-right {
+  transform: translateX(-30px);
+}
+
+.scroll-animation.fade-right.animate {
+  transform: translateX(0);
+}
+
+/* Zoom In Animation */
+.scroll-animation.zoom-in {
+  transform: scale(0.9);
+}
+
+.scroll-animation.zoom-in.animate {
+  transform: scale(1);
+}
+
+/* Zoom Out Animation */
+.scroll-animation.zoom-out {
+  transform: scale(1.1);
+}
+
+.scroll-animation.zoom-out.animate {
+  transform: scale(1);
+}
+
+/* Flip Up Animation */
+.scroll-animation.flip-up {
+  transform: perspective(400px) rotateX(90deg);
+  transform-origin: top;
+}
+
+.scroll-animation.flip-up.animate {
+  transform: perspective(400px) rotateX(0);
+}
+
+/* Flip Down Animation */
+.scroll-animation.flip-down {
+  transform: perspective(400px) rotateX(-90deg);
+  transform-origin: bottom;
+}
+
+.scroll-animation.flip-down.animate {
+  transform: perspective(400px) rotateX(0);
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.scroll-animation.bounce.animate {
+  animation: bounce 1s ease;
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.scroll-animation.shake.animate {
+  animation: shake 0.8s ease;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scroll-animation.pulse.animate {
+  animation: pulse 1s ease;
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-animation.rotate.animate {
+  animation: rotate 1s ease;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  transition-delay: calc(var(--stagger-delay, 0.1s) * var(--child-index, 0));
+}
+
+.stagger-children.animate > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animation {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  .scroll-animation.animate {
+    transform: none;
+  }
+}
+
+/* Ensure animations work on page load */
+@media screen and (min-width: 768px) {
+  .scroll-animation {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Add smooth transitions for all animated elements */
+.scroll-animation * {
+  transition: inherit;
+} 
